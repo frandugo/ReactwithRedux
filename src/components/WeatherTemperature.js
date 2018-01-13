@@ -21,3 +21,4 @@ const WeatherTemperature = ({ temperature, weatherState }) => (
 export default WeatherTemperature;
 
 // https://vuejsdevelopers.com/2018/01/08/vue-js-roles-permissions-casl/?jsdojo_id=revue_vrp&utm_campaign=Revue%20newsletter&utm_medium=Newsletter&utm_source=Vue.js%20Developers
+// https://scrimba.com/p/pWqLHa/cg9PpTb
