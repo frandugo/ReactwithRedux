@@ -1,14 +1,23 @@
 import React from 'react';
 import WeatherIcons from 'react-weathericons';
-const getWeatherIcon = weatherstate => {
-  switch (weatherstate){
+
+const stateToIconName = weatherState => {
+  switch (weatherState){
     case "cloud":
-        return( <WeatherIcons name="cloud" size="2x" /> );
-      break;
+        return "cloud";
+    case "cloudy":
+        return "cloudy";
+    case "sun":
+        return "day-sunny";
+    case "rain":
+        return "rain";            
     default:
-        return( <WeatherIcons name="sleet" size="2x" /> );
+        return "day-sunny";
       break;  
   }
+};
+const getWeatherIcon = weatherState => {
+  return(<WeatherIcons name={stateToIconName(weatherState)} size="2x" />);
 }
 const WeatherTemperature = ({ temperature, weatherState }) => (
   <div>
