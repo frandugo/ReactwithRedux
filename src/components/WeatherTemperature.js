@@ -1,16 +1,19 @@
 import React from 'react';
 import WeatherIcons from 'react-weathericons';
+import { CLOUD, CLOUDY , RAIN, SNOW, SUN } from './../constants/weathers';
 
 const stateToIconName = weatherState => {
   switch (weatherState){
-    case "cloud":
+    case CLOUD:
         return "cloud";
-    case "cloudy":
+    case CLOUDY:
         return "cloudy";
-    case "sun":
-        return "day-sunny";
-    case "rain":
-        return "rain";            
+    case RAIN:
+        return "rain";
+    case SNOW:
+        return "snow";    
+    case SUN:
+        return "day-sunny";          
     default:
         return "day-sunny";
       break;  
@@ -30,4 +33,3 @@ const WeatherTemperature = ({ temperature, weatherState }) => (
 export default WeatherTemperature;
 
 // https://vuejsdevelopers.com/2018/01/08/vue-js-roles-permissions-casl/?jsdojo_id=revue_vrp&utm_campaign=Revue%20newsletter&utm_medium=Newsletter&utm_source=Vue.js%20Developers
-// https://scrimba.com/p/pWqLHa/cg9PpTb
