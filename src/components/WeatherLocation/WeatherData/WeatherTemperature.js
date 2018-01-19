@@ -1,6 +1,8 @@
 import React from 'react';
 import WeatherIcons from 'react-weathericons';
-import { CLOUD, CLOUDY , RAIN, SNOW, SUN } from './../constants/weathers';
+import PropTypes from 'prop-types';
+
+import { CLOUD, CLOUDY , RAIN, SNOW, SUN } from './../../../constants/weathers';
 
 const stateToIconName = weatherState => {
   switch (weatherState){
@@ -23,13 +25,17 @@ const getWeatherIcon = weatherState => {
   return(<WeatherIcons name={stateToIconName(weatherState)} size="2x" />);
 }
 const WeatherTemperature = ({ temperature, weatherState }) => (
-  <div>
+  <div className='weatherTemperarureCont'>
     {getWeatherIcon(weatherState)}
     
     <span>{`${temperature} C`}</span>
   </div>
 );
 
+WeatherTemperature.propTypes = {
+    temperature: PropTypes.number.isRequired,
+    weatherState: PropTypes.string,
+};
 export default WeatherTemperature;
 
 // https://vuejsdevelopers.com/2018/01/08/vue-js-roles-permissions-casl/?jsdojo_id=revue_vrp&utm_campaign=Revue%20newsletter&utm_medium=Newsletter&utm_source=Vue.js%20Developers
