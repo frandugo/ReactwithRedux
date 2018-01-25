@@ -18,7 +18,7 @@ const stateToIconName = weatherState => {
         return "day-sunny";          
     default:
         return "day-sunny";
-      break;  
+        break;  
   }
 };
 const getWeatherIcon = weatherState => {
