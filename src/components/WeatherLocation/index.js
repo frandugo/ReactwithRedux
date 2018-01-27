@@ -19,6 +19,7 @@ const data = {
 class WeatherLocation extends Component{
 
   constructor(){
+    console.log('Constructor');
     super();
     this.state = {
       city: 'Buenos Aires',
@@ -37,12 +38,17 @@ class WeatherLocation extends Component{
     }).catch();
   }
 
+  componentWillMount(){
+      this.handleUpdateClick();
+  }
+
   render = ()  => {
+    console.log('Render');
     const { city, data } = this.state;
     return(
       <div className='weatherLocationCont'>
         <Location city={ city } className='weatherLocation' />
-        <WeatherData data={ data } />
+        { data ? <WeatherData data={ data } /> : 'Loading...' }
         <button onClick={this.handleUpdateClick} > Actualizar </button>
       </div>);  
   };
