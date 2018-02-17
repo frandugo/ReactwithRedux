@@ -10,7 +10,7 @@ const api_weather = `http://api.openweathermap.org/data/2.5/weather?q=${ locatio
 const data = {
   temperature: 20,
   weatherState: SUN,
-  humidity: 10,
+  humidity: 70,
   wind: '10 m/s'
 };
 
@@ -57,9 +57,8 @@ class WeatherLocation extends Component{
     const { city, data } = this.state;
     return(
       <div className='weatherLocationCont'>
-        <Location city={ city } className='weatherLocation' />
+        <Location city={ city } />
         <WeatherData data={ data } />
-        <button onClick={this.handleUpdateClick} > Actualizar </button>
       </div>);  
   };
 };
