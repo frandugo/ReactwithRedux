@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Location from './Location';
 import WeatherData from './WeatherData';
+
+import transformWeather from './../../services/transformWeather';
 import { SNOW, RAIN , SUN } from './../../constants/weathers';
 
-const location = "Bogota";
+const url = "http://api.openweathermap.org/data/2.5/weather";
 const apiKey = "da09c8c53b94eb4fbea563ad654b035b";
-const api_weather = `http://api.openweathermap.org/data/2.5/weather?q=${ location }&appid=${ apiKey }`;
+
 
 const data = {
   temperature: 20,
@@ -16,40 +18,26 @@ const data = {
 
 class WeatherLocation extends Component{
 
-  constructor(){
+  constructor({ city }){
+    console.log('Constructor');
     super();
     this.state = {
-      city: 'Buenos Aires',
-      data: data,
+      city,
+      data: null,
     }
   }
 
-  getWeatherState = weather => {
-    return SUN;
-  }
 
-  getData = (weather_data) => {
-    const { humidity, temp } = weather_data.main;
-    const { speed } = weather_data.wind;
-    const weatherState = this.getWeatherState(this.weather);
-
-    const data = {
-      humidity,
-      temperature: temp,
-      weatherState,
-      wind: `${ speed } m/s`,
-    }
-
-  }
-
-  handleUpdateClick = () => {
+  componentWillMount(){
+    const city = this.state;
+    const api_weather = `${ url }?q=${ city }&appid=${ apiKey }`;
     fetch(api_weather).then(data => {
       return data.json();
     }).then( weather_data => {
-      const data = this.getData(weather_data);
+      var data = transformWeather(weather_data);
+      console.log({ data });
       this.setState({ data });
       console.log(weather_data);
-      //debugger;
     }).catch();
   }
 
@@ -62,5 +50,7 @@ class WeatherLocation extends Component{
       </div>);  
   };
 };
-
+WeatherLocation.propTypes = {
+  city: PropTypes.string,
+}
 export default WeatherLocation;
